@@ -3,12 +3,18 @@ package com.example.gridapptest
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.gridapptest.ui.theme.GridAppTestTheme
 
@@ -22,25 +28,28 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+
                 }
             }
         }
     }
 }
-
+@Preview
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun GridApp(){
+    GridAppMain();
 }
 
-@Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
-    GridAppTestTheme {
-        Greeting("Android")
+fun GridAppMain(modifier: Modifier=Modifier) {
+
+    Column(
+        modifier=modifier,
+        horizontalAlignment = Alignment.CenterHorizontally
+        )
+    {
+        Row{
+            Image(painter = painterResource(id = DataSource.topics[0].imageOfTopic), contentDescription = )
+        }
     }
 }
