@@ -1,6 +1,4 @@
 package com.example.gridapptest
 
-class Topic(sTopicName: Int, numOfAssociates: Int, imageOfTopic: Int){
-    var sTopicName=sTopicName;
-    var imageOfTopic=imageOfTopic;
+class Topic(var sTopicName: Int, var numOfAssociates: Int, var imageOfTopic: Int){
 }
