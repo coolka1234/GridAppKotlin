@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    GridApp1(
+                    GridApp(
                         modifier =Modifier.padding(8.dp)
                     )
                 }
@@ -52,31 +52,14 @@ class MainActivity : ComponentActivity() {
 fun GridApp(modifier: Modifier){
         LazyVerticalGrid(columns = GridCells.Fixed(2),
             verticalArrangement = Arrangement.spacedBy(8.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
             modifier = modifier)
         {
             items(DataSource.topics){
                 topic->
-                SingleCell(modifier,topic);
+                SingleCell(Modifier,topic);
             }
         }
-}
-@Composable
-fun GridApp1(modifier: Modifier){
-    Row {
-        LazyColumn(){
-            items(DataSource.topics){
-                topic->
-                SingleCell(modifier,topic)
-            }
-        }
-        LazyColumn(){
-            items(DataSource.topics){
-                topic->
-                SingleCell(modifier,topic)
-            }
-        }
-    }
 }
 
 @Composable
@@ -88,24 +71,24 @@ fun SingleCell(modifier: Modifier=Modifier, thisTopic: Topic) {
             Row {
                 Image(painter = painterResource(id = thisTopic.imageOfTopic), contentDescription =stringResource(id = thisTopic.sTopicName),
                     modifier.size(68.dp,68.dp))
-                Column {
+                Column() {
                     Text(text = stringResource(id = thisTopic.sTopicName), modifier = modifier.padding(top=16.dp,start=mediumPadding, bottom = smallPadding))
                     Row (verticalAlignment = Alignment.CenterVertically){
-                        Text(text = thisTopic.numOfAssociates.toString(), modifier=modifier.padding(
-                            start = mediumPadding,
-                            top = 0.dp,
-                            end = mediumPadding,
-                            bottom = 0.dp
-                        ))
                         Icon(
                             painter = painterResource(R.drawable.ic_grain),
                             contentDescription = null,
                             modifier = Modifier
                                 .padding(start = mediumPadding,
                                     top = 0.dp,
-                                    end = mediumPadding,
+                                    end = 0.dp,
                                     bottom = 0.dp)
                         )
+                        Text(text = thisTopic.numOfAssociates.toString(), modifier=modifier.padding(
+                            start = smallPadding,
+                            top = 0.dp,
+                            end = 0.dp,
+                            bottom = 0.dp
+                        ))
                     }
                 }
             }
