@@ -24,12 +24,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.example.gridapptest.ui.theme.GridAppTestTheme
-
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,10 +39,10 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = MaterialTheme.colorScheme.surface
                 ) {
                     GridApp(
-                        modifier =Modifier.padding(8.dp)
+                        modifier =Modifier.padding(0.dp)
                     )
                 }
             }
@@ -70,9 +71,9 @@ fun SingleCell(modifier: Modifier=Modifier, thisTopic: Topic) {
         Box{
             Row {
                 Image(painter = painterResource(id = thisTopic.imageOfTopic), contentDescription =stringResource(id = thisTopic.sTopicName),
-                    modifier.size(68.dp,68.dp))
+                    modifier.size(68.dp,68.dp),contentScale = ContentScale.Crop)
                 Column() {
-                    Text(text = stringResource(id = thisTopic.sTopicName), modifier = modifier.padding(top=16.dp,start=mediumPadding, bottom = smallPadding))
+                    Text(text = stringResource(id = thisTopic.sTopicName), modifier = modifier.padding(top=16.dp,start=mediumPadding, bottom = smallPadding),style = MaterialTheme.typography.bodyMedium)
                     Row (verticalAlignment = Alignment.CenterVertically){
                         Icon(
                             painter = painterResource(R.drawable.ic_grain),
@@ -83,7 +84,7 @@ fun SingleCell(modifier: Modifier=Modifier, thisTopic: Topic) {
                                     end = 0.dp,
                                     bottom = 0.dp)
                         )
-                        Text(text = thisTopic.numOfAssociates.toString(), modifier=modifier.padding(
+                        Text(text = thisTopic.numOfAssociates.toString(),style = MaterialTheme.typography.labelMedium, modifier=modifier.padding(
                             start = smallPadding,
                             top = 0.dp,
                             end = 0.dp,
@@ -95,8 +96,8 @@ fun SingleCell(modifier: Modifier=Modifier, thisTopic: Topic) {
         }
     }
 }
-@Composable
 @Preview
+@Composable
 fun PreviewCard()
 {
     SingleCell(thisTopic = DataSource.topics[0])
